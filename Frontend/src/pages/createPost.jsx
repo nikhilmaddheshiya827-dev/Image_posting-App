@@ -22,7 +22,7 @@ const CreatePost = () =>{
     const formData = new FormData(e.target)
     axios.post("http://localhost:3000/api/post/create-post", formData)
     .then((res)=>{
-      navigate("/")
+      navigate("/feed")
     })
     
     .catch((err)=>{
