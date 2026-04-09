@@ -4,16 +4,14 @@ import { useNavigate } from "react-router-dom"
 import { RiUser3Line, RiMailLine, RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 
 
+
 const Auth = () =>{
   const navigate = useNavigate()
   
   const [show, setShow] = useState(false);
 
-  
-  
-  
-  
   return(
+    <div>
     <section className="bg-gray-950 w-[100vw] h-[100vh] relative flex items-center justify-center ">
       <div className="w-[80%] h-[70%] border-2 border-gray-300 overflow-hidden relative rounded-3xl">
 
@@ -70,8 +68,8 @@ const Auth = () =>{
       
     </form>
     
-    <div className="w-full mt-3 relative h-[1px] bg-gray-300 z-50"></div>
-    <div className="relative w-[100%] h-7 z-50 mt-1 flex items-center justify-center">
+    <div className="w-full mt-3 relative h-[1px] bg-gray-300 z-40"></div>
+    <div className="relative w-[100%] h-7 z-40 mt-1 flex items-center justify-center">
       <p className="text-xs text-white">Already have an Account?</p>
       <button className="text-xs text-green-400 border-none underline py-3"
       onClick={()=>
@@ -81,8 +79,8 @@ const Auth = () =>{
     </div>
     
 
-      <p className="text-xs text-white/70 text-center px-1 relative z-50">or</p>
-<div className="w-full h-[20%] relative z-50  flex items-center justify-center gap-8">
+      <p className="text-xs text-white/70 text-center px-1 relative z-40">or</p>
+<div className="w-full h-[20%] relative z-40  flex items-center justify-center gap-8">
   <button className="w-9 h-9 rounded-[50%] bg-blue-900 overflow-hidden hover:scale-110 transition duration-300"><img src="/google.jpg" alt="Google" /></button>
   
   <button className="w-9 h-9 rounded-[50%] bg-blue-900 overflow-hidden hover:scale-110 transition duration-300"><img src="/facebook.png" alt="Facebook" /></button>
@@ -92,6 +90,7 @@ const Auth = () =>{
 </div>
       </div>
     </section>
+    </div>
     )
 }
 export default Auth;
