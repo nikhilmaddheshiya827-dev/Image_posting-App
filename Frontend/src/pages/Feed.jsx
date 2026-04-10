@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { RiHeartFill } from "@remixicon/react"
+import { RiHeartFill, RiAddCircleLine } from "@remixicon/react"
 import { motion, AnimatePresence } from "framer-motion"
 import axios from "axios"
 import Lottie from "lottie-react"
 import errorIcon from "../Icon/errorIcon.json"
-
+import {useNavigate} from 'react-router-dom'
 const Feed = () => {
-
+const navigate = useNavigate()
   const [posts, setPosts] = useState([])
   const [liked, setLiked] = useState({ id: null, show: false })
 
@@ -172,7 +172,16 @@ const handleLike = async (postId) => {
 
         </div>
       )}
+ <div className="w-[30px] h-[30px] overflow-hidden fixed flex items-center justify-center top-1 right-1 rounded-full add_post" 
+        onClick={()=>
+        navigate("/create-post")} >
 
+        <RiAddCircleLine
+        size={36} 
+        style={{color: "white",
+          backgroundColor: ' black',
+        }} />
+        </div>
     </section>
   )
 }

@@ -82,4 +82,8 @@ Nikhil
 
 ---
 
+<<<<<<< HEAD
 ⭐ If you like this project, give it a star!
+=======
+⭐ If you like this project, give it a star!
+>>>>>>> 512d936 (Second commit)

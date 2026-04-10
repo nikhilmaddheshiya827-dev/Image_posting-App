@@ -1,6 +1,6 @@
 @import "tailwindcss";
 body{
-  background-color: black;
+  background-color: whitesmoke;
 }
 @keyframes spin-slow {
   0% {

@@ -2,9 +2,10 @@ import React, { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 import { useLocation } from 'react-router-dom'
 
-const Stairs = () => {
+const Stairs = (props) => {
   const location = useLocation()
   const stairRef = useRef(null)
+  const pageRef = useRef(null)
 
   const runAnimation = () => {
     const tl = gsap.timeline()
@@ -25,26 +26,35 @@ const Stairs = () => {
     })
 
     tl.set(stairRef.current, { autoAlpha: 0 })
+    gsap.to(pageRef.current,{
+      opacity: 1,
+      delay: 0.9
+    })
+    
   }
 
-  // 🔥 page load (reload)
   useEffect(() => {
     runAnimation()
   }, [])
 
-  // 🔥 route change
+
   useEffect(() => {
     runAnimation()
   }, [location.pathname])
 
+
   return (
-    <div
+    <div>
+      <div
       ref={stairRef}
       className="fixed top-0 left-0 w-screen h-screen z-50 pointer-events-none opacity-0"
     >
       {[...Array(5)].map((_, i) => (
         <div key={i} className="stair w-full h-1/5 bg-black relative"></div>
       ))}
+    </div>
+    <div style={{delay: 1}} className="opacity-0" ref={pageRef}>{props.children
+    }</div>
     </div>
   )
 }

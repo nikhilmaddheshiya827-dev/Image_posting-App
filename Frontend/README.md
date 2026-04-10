@@ -63,4 +63,8 @@ http://localhost:3000/api
 
 ---
 
+<<<<<<< HEAD
 Frontend running on: "http://localhost:5173"
+=======
+Frontend running on: "http://localhost:5173"
+>>>>>>> 512d936 (Second commit)

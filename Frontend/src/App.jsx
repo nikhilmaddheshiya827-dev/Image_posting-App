@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useNavigate} from 'react-router-dom'
 import CreatePost from './pages/createPost.jsx'
 import Feed from './pages/Feed.jsx'
 import Auth from './pages/Auth.jsx'
@@ -7,9 +7,11 @@ import Login from './pages/Login.jsx'
 import Stairs from './Components/Stairs.jsx'
 
 const App = () =>{
+  
+  
   return(
     <Router>
-      <Stairs />
+      <Stairs>
       <Routes>
         <Route path='/create-post' element={<CreatePost />} />
         <Route path='/feed' element={<Feed />} />
@@ -17,6 +19,7 @@ const App = () =>{
         <Route path='/login' element={<Login />} />
 
       </Routes>
+      </Stairs>
     </Router>
     )
 }
