@@ -2,17 +2,37 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { RiMailLine, RiEyeLine, RiEyeOffLine } from "@remixicon/react";
 import  '../App.css'
-
+import axios from 'axios'
 
 
 const Login = () =>{
   const navigate = useNavigate()
   const [show, setShow] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  
+  const handleSubmit = async (e) =>{
+    e.preventDefault()
+    
+      const formData = new FormData(e.target)
+
+    const data= {
+      email: formData.get("email"),
+    password: formData.get("password")
+    }
+    setClicked(true)
+    axios.post("http://localhost:3000/api/auth/login", data)
+    .then((res)=>{
+    navigate("/feed")
+    })
+    .catch((err)=>{
+      console.log(err)
+      alert("user not found")
+      setClicked(false)
+    })
+  }
   
   
   return(
-      
-      
     <section className="w-full h-[100vh] bg-gray-900 flex items-center justify-center">
     <div className="w-[80%] h-[70%] rounded-3xl relative border-2 border-white bg-gradient-to-tl from-white/10 via-black to-white/20 backdrop-blur-xl overflow-hidden">
         
@@ -22,7 +42,7 @@ const Login = () =>{
         
       <div className="w-[200px] h-[200px] [clip-path:polygon(50%_0%,100%_30%,80%_100%,20%_100%,0%_30%)] absolute top-[40%] -right-[40%] bg-gradient-to-r from-cyan-500 via-blue-500 to-transparent rotate-200"></div>
       
-    <form className="flex items-center justify-center flex-col h-[45vh] relative gap-7">
+    <form className="flex items-center justify-center flex-col h-[45vh] relative gap-7" onSubmit={handleSubmit}>
     <h1 className="text-4xl pt-10 pb-12 text-white text-center">Login in</h1>
     
       <div className="relative flex items-center">
@@ -46,7 +66,8 @@ const Login = () =>{
       </span>
       </div>
       
-      <button className="text-white border-2 border-white py-1 px-4 rounded-2xl bg-gradient-to-br from-cyan-500 to-black" type="submit">Login</button>
+      <button className="text-white border-2 border-white py-1 px-4 rounded-2xl bg-gradient-to-br from-cyan-500 to-black" type="submit" disabled={clicked}> 
+      {clicked ? "loging in.." : "login"}</button>
       
     </form>
       <div className="w-screen h-[1px] bg-white relative z-40 mt-10"></div>

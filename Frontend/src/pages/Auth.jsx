@@ -7,8 +7,34 @@ import { RiUser3Line, RiMailLine, RiEyeLine, RiEyeOffLine } from "@remixicon/rea
 
 const Auth = () =>{
   const navigate = useNavigate()
-  
   const [show, setShow] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  
+
+const handleSubmit = async (e) =>{
+  e.preventDefault()
+
+  setClicked(true)
+
+  const formData = new FormData(e.target)
+
+  const data = {
+    username: formData.get("username"),
+    email: formData.get("email"),
+    password: formData.get("password")
+  }
+
+  axios.post("http://localhost:3000/api/auth/register", data)
+    .then((res)=>{
+      navigate("/feed")
+    })
+    .catch((err)=>{
+      console.log(err)
+      alert("Error")
+      setClicked(false)
+    })
+}
+
 
   return(
     <div>
@@ -16,18 +42,18 @@ const Auth = () =>{
       <div className="w-[80%] h-[70%] border-2 border-gray-300 overflow-hidden relative rounded-3xl">
 
      
-<div class="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-400/2 to-teal-500 backdrop-blur-lg -rotate-35 shadow-[0_0_40px_rgba(255,255,255,0.2)]
+<div className="absolute w-[500px] h-[500px] bg-gradient-to-r from-blue-400/2 to-teal-500 backdrop-blur-lg -rotate-35 shadow-[0_0_40px_rgba(255,255,255,0.2)]
  [clip-path:polygon(50%_0%,100%_30%,80%_100%,20%_100%,0%_30%)]
 -top-[30vh] -left-[70vw]"></div>
     {/* 
     */}
- <div class="absolute -z-[1px] w-[400px] h-[400px] bg-gradient-to-r from-blue-400/2 to-slate-600/50 backdrop-blur-lg -rotate-35 shadow-[0_0_40px_rgba(255,255,255,0.2)]
+ <div className="absolute -z-[1px] w-[400px] h-[400px] bg-gradient-to-r from-blue-400/2 to-slate-600/50 backdrop-blur-lg -rotate-35 shadow-[0_0_40px_rgba(255,255,255,0.2)]
  [clip-path:circle(50%)]
  bottom-[-30vh] right-[-100px]"></div>
  
   
     {/* form */}
-    <form className="flex items-center justify-center flex-col h-[45vh] relative gap-5 ">
+    <form className="flex items-center justify-center flex-col h-[45vh] relative gap-5" onSubmit={handleSubmit}>
     <h1 className="text-4xl text-white absolute top-10">Sign Up</h1>
     
     <div className="relative flex items-center mt-[15vh]">
@@ -64,7 +90,7 @@ const Auth = () =>{
       </span>
       </div>
       
-      <button className="text-white border-2 border-white py-1 px-4 rounded-2xl bg-gradient-to-br from-cyan-500 to-black" type="submit">Register</button>
+      <button className="text-white border-2 border-white py-1 px-4 rounded-2xl bg-gradient-to-br from-cyan-500 to-black" type="submit" disabled={clicked}>{clicked ? "registering" : "register"}</button>
       
     </form>
     
